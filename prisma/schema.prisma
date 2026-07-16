@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Route {
+  id              String @id @default(cuid())
+  origin          String
+  destination     String
+  durationMinutes Int
+
+  trips Trip[]
+
+  @@index([origin, destination])
+}
+
+model Trip {
+  id           String   @id @default(cuid())
+  routeId      String
+  departureAt  DateTime
+  basePrice    Float
+  totalSeats   Int
+  createdAt    DateTime @default(now())
+
+  route        Route         @relation(fields: [routeId], references: [id])
+  reservations Reservation[]
+}
+
+enum ReservationStatus {
+  CONFIRMED
+  CANCELLED
+}
+
+model Reservation {
+  id             String            @id @default(cuid())
+  code           String            @unique
+  tripId         String
+  seatNumber     Int
+  passengerName  String
+  passengerCpf   String
+  passengerEmail String
+  status         ReservationStatus @default(CONFIRMED)
+  createdAt      DateTime          @default(now())
+  cancelledAt    DateTime?
+
+  trip Trip @relation(fields: [tripId], references: [id])
+
+  @@index([tripId, seatNumber])
+}
