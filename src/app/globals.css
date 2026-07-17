@@ -1,17 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
+
+  --color-primary-50: #eef1f6;
+  --color-primary-300: #8b97ac;
+  --color-primary-400: #5b6b85;
+  --color-primary-600: #16213a;
+  --color-primary-700: #0f172a;
+  --color-primary-800: #0a0f1e;
+  --color-primary-900: #05070d;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"]:disabled {
+  cursor: not-allowed;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
