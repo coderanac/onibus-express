@@ -3,7 +3,7 @@ import type {
   TripRepository,
   TripSearchFilters,
 } from "@/application/ports/trip-repository";
-import type { Trip } from "@/domain/entities";
+import { hasTripDeparted, type Trip } from "@/domain/entities";
 
 type TripWithRoute = Prisma.TripGetPayload<{ include: { route: true } }>;
 type TripWithRoundAndReservations = Prisma.TripGetPayload<{
@@ -53,11 +53,13 @@ export function createPrismaTripRepository(client: PrismaClient): TripRepository
         orderBy: { departureAt: "asc" },
       });
 
+      const now = new Date();
       return (trips as TripWithRoundAndReservations[])
         .filter(
           (trip) =>
             matchesLocation(trip.route.origin, filters.origin) &&
-            matchesLocation(trip.route.destination, filters.destination),
+            matchesLocation(trip.route.destination, filters.destination) &&
+            !hasTripDeparted(trip, now),
         )
         .map((trip) => ({
           ...toTrip(trip),
