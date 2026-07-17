@@ -103,9 +103,15 @@ export function useCancelReservation() {
         queryClient.setQueryData(context.key, context.previousReservation);
       }
     },
-    onSettled: (_data, _error, code) => {
+    onSettled: (data, _error, code, context) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.reservation(code) });
       queryClient.invalidateQueries({ queryKey: queryKeys.myReservations });
+
+      const tripId = data?.tripId ?? context?.previousReservation?.trip.id;
+      if (tripId) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.trip(tripId) });
+      }
+      queryClient.invalidateQueries({ queryKey: ["trips"] });
     },
   });
 }
