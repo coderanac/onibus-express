@@ -10,16 +10,16 @@
 
 O desafio original pedia um backend separado do frontend, mas como a vaga é focada em frontend, resolvi entregar tudo em um único projeto Next.js. O React continua sendo o motor da interface e as _Route Handlers_ do Next fazem o papel do backend, com a mesma separação em camadas (domínio, casos de uso, infraestrutura, API) que seria esperada em qualquer backend bem organizado. Isso deixou a entrega mais simples, com um único `npm install` e um único Docker, sem cortar nenhuma regra de negócio pedida.
 
-## 📸 Capturas de tela
+## 📸 Aplicação rodando
 
 <table>
   <tr>
-    <td align="center"><img src="public/screenshots/home.png" width="400" alt="Busca de passagens" /><br />Busca de passagens + ofertas</td>
-    <td align="center"><img src="public/screenshots/selecao-assento.png" width="400" alt="Seleção de assento" /><br />Seleção de assento</td>
+    <td align="center"><img src="public/screenshots/login.gif" width="400" alt="Login e busca de passagens" /><br />Login e busca de passagens</td>
+    <td align="center"><img src="public/screenshots/reserva.gif" width="400" alt="Fluxo de reserva" /><br />Fluxo de reserva</td>
   </tr>
   <tr>
-    <td align="center"><img src="public/screenshots/home-logado.png" width="400" alt="Usuário logado" /><br />Usuário logado (menu + calendário)</td>
-    <td align="center"><img src="public/screenshots/consulta-reserva.png" width="400" alt="Consulta e cancelamento de reserva" /><br />Consulta e cancelamento de reserva</td>
+    <td align="center"><img src="public/screenshots/assento-reservado.gif" width="400" alt="Seleção de assento" /><br />Seleção de assento</td>
+    <td align="center"><img src="public/screenshots/cancelar.gif" width="400" alt="Consulta e cancelamento de reserva" /><br />Consulta e cancelamento de reserva</td>
   </tr>
 </table>
 
