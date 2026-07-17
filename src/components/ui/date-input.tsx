@@ -1,9 +1,4 @@
-import {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  type InputHTMLAttributes,
-} from "react";
+import { forwardRef, useImperativeHandle, useRef, type InputHTMLAttributes } from "react";
 import { formatIsoToBrDate, maskDateInput, parseBrDateToIso } from "@/domain/date";
 
 export interface DateInputHandle {
@@ -11,8 +6,10 @@ export interface DateInputHandle {
   focus: () => void;
 }
 
-interface DateInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "type"> {
+interface DateInputProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "value" | "onChange" | "type"
+> {
   value: string;
   error?: boolean;
   onChange: (value: string) => void;

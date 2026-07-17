@@ -47,10 +47,20 @@ export function ConfirmDialog({
           {description}
         </p>
         <div className="mt-6 flex justify-end gap-3">
-          <Button type="button" variant="secondary" onClick={onCancel} disabled={isLoading}>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={onCancel}
+            disabled={isLoading}
+          >
             {cancelLabel}
           </Button>
-          <Button type="button" variant="danger" onClick={onConfirm} isLoading={isLoading}>
+          <Button
+            type="button"
+            variant="danger"
+            onClick={onConfirm}
+            isLoading={isLoading}
+          >
             {confirmLabel}
           </Button>
         </div>

@@ -90,7 +90,11 @@ export function PassengerForm({ trip, seatNumber, onSuccess }: PassengerFormProp
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-label="Dados do passageiro" className="mt-6 flex flex-col gap-6">
+    <form
+      onSubmit={handleSubmit}
+      aria-label="Dados do passageiro"
+      className="mt-6 flex flex-col gap-6"
+    >
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-slate-900">Dados do passageiro</h2>
         <div className="mt-4 flex flex-col gap-4">
@@ -124,7 +128,10 @@ export function PassengerForm({ trip, seatNumber, onSuccess }: PassengerFormProp
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-slate-900">Resumo da compra</h2>
         <dl className="mt-4 grid grid-cols-2 gap-4 text-sm">
-          <SummaryRow label="Trajeto" value={`${trip.route.origin} → ${trip.route.destination}`} />
+          <SummaryRow
+            label="Trajeto"
+            value={`${trip.route.origin} → ${trip.route.destination}`}
+          />
           <SummaryRow label="Assento" value={String(seatNumber)} />
           <SummaryRow label="Passageiro" value={values.passengerName || "—"} />
           <SummaryRow label="Total" value={formatCurrency(trip.basePrice)} />
@@ -173,7 +180,9 @@ function TextField({
         onChange={(event) => onChange(event.target.value)}
         aria-invalid={Boolean(error)}
         className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none ${
-          error ? "border-red-500 focus:border-red-600" : "border-slate-300 focus:border-blue-600"
+          error
+            ? "border-red-500 focus:border-red-600"
+            : "border-slate-300 focus:border-blue-600"
         }`}
       />
       {error ? <p className="mt-1 text-sm text-red-600">{error}</p> : null}

@@ -128,9 +128,7 @@ export function OffersCarousel({ onSelectOffer }: OffersCarouselProps) {
 
   return (
     <section className="mt-12">
-      <h2 className="text-xl font-bold text-slate-900">
-        Passagens de ônibus em oferta
-      </h2>
+      <h2 className="text-xl font-bold text-slate-900">Passagens de ônibus em oferta</h2>
 
       <div className="relative mt-5">
         <div

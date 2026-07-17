@@ -3,9 +3,6 @@ import type {
   TripSearchFilters,
 } from "@/application/ports/trip-repository";
 
-export function searchTrips(
-  tripRepository: TripRepository,
-  filters: TripSearchFilters,
-) {
+export function searchTrips(tripRepository: TripRepository, filters: TripSearchFilters) {
   return tripRepository.search(filters);
 }

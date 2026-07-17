@@ -13,10 +13,12 @@ import { useCancelReservation, useReservationByCode } from "@/lib/queries";
 export function ReservationLookup({ initialCode = "" }: { initialCode?: string }) {
   const [code, setCode] = useState(initialCode);
   const [searchedCode, setSearchedCode] = useState(initialCode.trim().toUpperCase());
-  const { data: reservation, isLoading, isError, error } = useReservationByCode(
-    searchedCode,
-    searchedCode.length > 0,
-  );
+  const {
+    data: reservation,
+    isLoading,
+    isError,
+    error,
+  } = useReservationByCode(searchedCode, searchedCode.length > 0);
   const cancelReservation = useCancelReservation();
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
 

@@ -51,9 +51,8 @@ describe("SeatMap", () => {
       />,
     );
 
-    expect(screen.getByRole("button", { name: /Assento 4, selecionado/ })).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
+    expect(
+      screen.getByRole("button", { name: /Assento 4, selecionado/ }),
+    ).toHaveAttribute("aria-pressed", "true");
   });
 });

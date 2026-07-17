@@ -138,9 +138,9 @@ describe("registerUser", () => {
     };
     const userRepository = createFakeUserRepository(existingUser);
 
-    await expect(
-      registerUser({ userRepository }, buildRequest()),
-    ).rejects.toMatchObject({ name: "CpfAlreadyRegisteredError" });
+    await expect(registerUser({ userRepository }, buildRequest())).rejects.toMatchObject({
+      name: "CpfAlreadyRegisteredError",
+    });
   });
 
   it("rejects an email that already has an account", async () => {
@@ -154,8 +154,8 @@ describe("registerUser", () => {
     };
     const userRepository = createFakeUserRepository(existingUser);
 
-    await expect(
-      registerUser({ userRepository }, buildRequest()),
-    ).rejects.toMatchObject({ name: "EmailAlreadyRegisteredError" });
+    await expect(registerUser({ userRepository }, buildRequest())).rejects.toMatchObject({
+      name: "EmailAlreadyRegisteredError",
+    });
   });
 });

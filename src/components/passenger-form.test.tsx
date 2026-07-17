@@ -32,7 +32,9 @@ describe("PassengerForm", () => {
 
   it("shows validation errors and blocks submission with empty fields", async () => {
     const user = userEvent.setup();
-    renderWithQueryClient(<PassengerForm trip={trip} seatNumber={5} onSuccess={jest.fn()} />);
+    renderWithQueryClient(
+      <PassengerForm trip={trip} seatNumber={5} onSuccess={jest.fn()} />,
+    );
 
     await user.click(screen.getByRole("button", { name: "Confirmar reserva" }));
 
@@ -44,7 +46,9 @@ describe("PassengerForm", () => {
 
   it("rejects an invalid CPF even when other fields are valid", async () => {
     const user = userEvent.setup();
-    renderWithQueryClient(<PassengerForm trip={trip} seatNumber={5} onSuccess={jest.fn()} />);
+    renderWithQueryClient(
+      <PassengerForm trip={trip} seatNumber={5} onSuccess={jest.fn()} />,
+    );
 
     await user.type(screen.getByLabelText("Nome completo"), "Maria Silva");
     await user.type(screen.getByLabelText("CPF"), "111.111.111-11");
@@ -60,7 +64,9 @@ describe("PassengerForm", () => {
     const onSuccess = jest.fn();
     (api.createReservation as jest.Mock).mockResolvedValue({ code: "ABC-12345" });
 
-    renderWithQueryClient(<PassengerForm trip={trip} seatNumber={5} onSuccess={onSuccess} />);
+    renderWithQueryClient(
+      <PassengerForm trip={trip} seatNumber={5} onSuccess={onSuccess} />,
+    );
 
     await user.type(screen.getByLabelText("Nome completo"), "Maria Silva");
     await user.type(screen.getByLabelText("CPF"), "529.982.247-25");

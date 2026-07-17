@@ -76,7 +76,10 @@ export const SearchForm = forwardRef<SearchFormHandle, SearchFormProps>(
           />
         </div>
         <div>
-          <label htmlFor="destination" className="block text-sm font-medium text-slate-700">
+          <label
+            htmlFor="destination"
+            className="block text-sm font-medium text-slate-700"
+          >
             Destino
           </label>
           <input

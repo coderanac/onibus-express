@@ -70,7 +70,8 @@ export function SeatMap({
 
         <div className="flex flex-col gap-3">
           {rows.map((rowSeats, rowIndex) => {
-            const isBackRow = rowIndex === rows.length - 1 && rowSeats.length === SEATS_PER_ROW;
+            const isBackRow =
+              rowIndex === rows.length - 1 && rowSeats.length === SEATS_PER_ROW;
 
             if (isBackRow) {
               return (

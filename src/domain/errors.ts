@@ -72,11 +72,7 @@ export function cpfAlreadyRegisteredError(): DomainError {
 }
 
 export function invalidCredentialsError(): DomainError {
-  return createDomainError(
-    "InvalidCredentialsError",
-    "E-mail ou senha inválidos.",
-    401,
-  );
+  return createDomainError("InvalidCredentialsError", "E-mail ou senha inválidos.", 401);
 }
 
 export function tripNotFoundError(): DomainError {
@@ -84,11 +80,7 @@ export function tripNotFoundError(): DomainError {
 }
 
 export function reservationNotFoundError(): DomainError {
-  return createDomainError(
-    "ReservationNotFoundError",
-    "Reserva não encontrada.",
-    404,
-  );
+  return createDomainError("ReservationNotFoundError", "Reserva não encontrada.", 404);
 }
 
 export function seatAlreadyTakenError(seatNumber: number): DomainError {

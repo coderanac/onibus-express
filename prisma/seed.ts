@@ -32,7 +32,9 @@ async function main() {
 
   for (const routeData of ROUTES) {
     const route = await prisma.route.create({ data: routeData });
-    const basePrice = Math.round(routeData.durationMinutes * BASE_PRICE_BY_DURATION_MINUTE * 1.8);
+    const basePrice = Math.round(
+      routeData.durationMinutes * BASE_PRICE_BY_DURATION_MINUTE * 1.8,
+    );
 
     for (let day = 1; day <= DAYS_AHEAD; day += 1) {
       for (const hour of DEPARTURE_HOURS) {
@@ -50,7 +52,9 @@ async function main() {
 
   const tripsCreated = await prisma.trip.count();
   const routesCreated = await prisma.route.count();
-  console.log(`Seed concluído: ${routesCreated} rotas e ${tripsCreated} viagens criadas.`);
+  console.log(
+    `Seed concluído: ${routesCreated} rotas e ${tripsCreated} viagens criadas.`,
+  );
 }
 
 main()

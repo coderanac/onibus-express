@@ -10,9 +10,7 @@ describe("generateReservationCode", () => {
   });
 
   it("generates codes that are reasonably unique across many calls", () => {
-    const codes = new Set(
-      Array.from({ length: 500 }, () => generateReservationCode()),
-    );
+    const codes = new Set(Array.from({ length: 500 }, () => generateReservationCode()));
     expect(codes.size).toBeGreaterThan(490);
   });
 });

@@ -11,15 +11,15 @@ Esse documento explica como o frontend do OniBus Express está organizado.
 
 ## Telas e arquivos
 
-| Tela | Página | Componente principal |
-| --- | --- | --- |
-| 1. Busca de passagens | `app/page.tsx` | `components/search-form.tsx` + `components/trip-list.tsx` |
-| 2. Seleção de assento | `app/viagens/[id]/page.tsx` | `components/trip-seat-selection.tsx` + `components/seat-map.tsx` |
+| Tela                                 | Página                                                                            | Componente principal                                                  |
+| ------------------------------------ | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| 1. Busca de passagens                | `app/page.tsx`                                                                    | `components/search-form.tsx` + `components/trip-list.tsx`             |
+| 2. Seleção de assento                | `app/viagens/[id]/page.tsx`                                                       | `components/trip-seat-selection.tsx` + `components/seat-map.tsx`      |
 | 3. Dados do passageiro e confirmação | `app/viagens/[id]/passageiro/page.tsx` + `app/reservas/sucesso/[codigo]/page.tsx` | `components/passenger-checkout.tsx` + `components/passenger-form.tsx` |
-| 4. Consulta de reserva (bônus) | `app/reservas/consulta/page.tsx` | `components/reservation-lookup.tsx` |
-| 5. Criar conta (bônus) | `app/criar-conta/page.tsx` | `components/register-form.tsx` |
-| 6. Login por e-mail/senha (bônus) | `app/entrar/page.tsx` | `components/login-form.tsx` |
-| 7. Minhas reservas (bônus) | `app/minhas-reservas/page.tsx` | `components/my-reservations.tsx` |
+| 4. Consulta de reserva (bônus)       | `app/reservas/consulta/page.tsx`                                                  | `components/reservation-lookup.tsx`                                   |
+| 5. Criar conta (bônus)               | `app/criar-conta/page.tsx`                                                        | `components/register-form.tsx`                                        |
+| 6. Login por e-mail/senha (bônus)    | `app/entrar/page.tsx`                                                             | `components/login-form.tsx`                                           |
+| 7. Minhas reservas (bônus)           | `app/minhas-reservas/page.tsx`                                                    | `components/my-reservations.tsx`                                      |
 
 A navegação entre as telas 2 e 3 usa a própria URL (`/viagens/{id}/passageiro?assento=5`), então o assento escolhido sobrevive a um refresh de página sem precisar de um estado global (Redux/Zustand/Context) pra isso.
 
@@ -35,12 +35,12 @@ Os componentes nunca chamam `fetch` direto, sempre usam um hook de `queries.ts`.
 ### Chaves de cache
 
 ```ts
-queryKeys.routes                  // ["routes"]
-queryKeys.trips(filters)          // ["trips", { origin, destination, date }]
-queryKeys.trip(tripId)            // ["trip", tripId]
-queryKeys.reservation(code)       // ["reservation", code]
-queryKeys.currentUser             // ["currentUser"]
-queryKeys.myReservations          // ["myReservations"]
+queryKeys.routes; // ["routes"]
+queryKeys.trips(filters); // ["trips", { origin, destination, date }]
+queryKeys.trip(tripId); // ["trip", tripId]
+queryKeys.reservation(code); // ["reservation", code]
+queryKeys.currentUser; // ["currentUser"]
+queryKeys.myReservations; // ["myReservations"]
 ```
 
 ### Invalidação

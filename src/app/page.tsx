@@ -2,7 +2,11 @@
 
 import { useRef, useState } from "react";
 import { OffersCarousel } from "@/components/offers-carousel";
-import { SearchForm, type SearchFormHandle, type SearchFormPrefill } from "@/components/search-form";
+import {
+  SearchForm,
+  type SearchFormHandle,
+  type SearchFormPrefill,
+} from "@/components/search-form";
 import { TripList } from "@/components/trip-list";
 import { useTripSearch } from "@/lib/queries";
 import type { TripSearchFiltersInput } from "@/lib/types";
@@ -26,7 +30,10 @@ export default function HomePage() {
         Encontre a melhor passagem de ônibus para a sua próxima viagem.
       </p>
 
-      <div id="busca" className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div
+        id="busca"
+        className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+      >
         <SearchForm
           ref={searchFormRef}
           onSearch={setFilters}

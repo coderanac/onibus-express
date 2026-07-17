@@ -48,19 +48,19 @@ Um detalhe importante: a disponibilidade de assentos não depende de quem está 
 
 ## Endpoints
 
-| Método | Rota | Caso de uso | Autenticação |
-| --- | --- | --- | --- |
-| `GET` | `/api/rotas` | `listRoutes` | não |
-| `GET` | `/api/viagens?origem=&destino=&data=` | `searchTrips` | não |
-| `GET` | `/api/viagens/{id}` | `getTripDetails` | não |
-| `POST` | `/api/reservas` | `createReservation` | opcional (associa ao usuário logado, se houver) |
-| `GET` | `/api/reservas/{codigo}` | `getReservation` | não |
-| `DELETE` | `/api/reservas/{codigo}` | `cancelReservation` | não |
-| `POST` | `/api/auth/registrar` | `registerUser` | cria a conta e a sessão |
-| `POST` | `/api/auth/login` | `loginWithEmail` | cria a sessão |
-| `POST` | `/api/auth/logout` | - | encerra a sessão |
-| `GET` | `/api/auth/me` | - | lê a sessão atual |
-| `GET` | `/api/minhas-reservas` | `reservationRepository.findByUserId` | obrigatória (401 sem sessão) |
+| Método   | Rota                                  | Caso de uso                          | Autenticação                                    |
+| -------- | ------------------------------------- | ------------------------------------ | ----------------------------------------------- |
+| `GET`    | `/api/rotas`                          | `listRoutes`                         | não                                             |
+| `GET`    | `/api/viagens?origem=&destino=&data=` | `searchTrips`                        | não                                             |
+| `GET`    | `/api/viagens/{id}`                   | `getTripDetails`                     | não                                             |
+| `POST`   | `/api/reservas`                       | `createReservation`                  | opcional (associa ao usuário logado, se houver) |
+| `GET`    | `/api/reservas/{codigo}`              | `getReservation`                     | não                                             |
+| `DELETE` | `/api/reservas/{codigo}`              | `cancelReservation`                  | não                                             |
+| `POST`   | `/api/auth/registrar`                 | `registerUser`                       | cria a conta e a sessão                         |
+| `POST`   | `/api/auth/login`                     | `loginWithEmail`                     | cria a sessão                                   |
+| `POST`   | `/api/auth/logout`                    | -                                    | encerra a sessão                                |
+| `GET`    | `/api/auth/me`                        | -                                    | lê a sessão atual                               |
+| `GET`    | `/api/minhas-reservas`                | `reservationRepository.findByUserId` | obrigatória (401 sem sessão)                    |
 
 A validação de entrada é feita com Zod (`src/lib/schemas.ts`). Erros de domínio (`DomainError`) e de validação são convertidos em respostas HTTP em `src/lib/http.ts` (`handleApiError`).
 

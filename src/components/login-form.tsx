@@ -58,7 +58,11 @@ export function LoginForm({ redirectTo = "/" }: { redirectTo?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-label="Entrar com e-mail e senha" className="flex flex-col gap-4">
+    <form
+      onSubmit={handleSubmit}
+      aria-label="Entrar com e-mail e senha"
+      className="flex flex-col gap-4"
+    >
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-slate-700">
           E-mail
@@ -70,10 +74,14 @@ export function LoginForm({ redirectTo = "/" }: { redirectTo?: string }) {
           onChange={(event) => updateField("email", event.target.value)}
           aria-invalid={Boolean(errors.email)}
           className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none ${
-            errors.email ? "border-red-500 focus:border-red-600" : "border-slate-300 focus:border-primary-600"
+            errors.email
+              ? "border-red-500 focus:border-red-600"
+              : "border-slate-300 focus:border-primary-600"
           }`}
         />
-        {errors.email ? <p className="mt-1 text-sm text-red-600">{errors.email}</p> : null}
+        {errors.email ? (
+          <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+        ) : null}
       </div>
 
       <div>
@@ -87,10 +95,14 @@ export function LoginForm({ redirectTo = "/" }: { redirectTo?: string }) {
           onChange={(event) => updateField("password", event.target.value)}
           aria-invalid={Boolean(errors.password)}
           className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none ${
-            errors.password ? "border-red-500 focus:border-red-600" : "border-slate-300 focus:border-primary-600"
+            errors.password
+              ? "border-red-500 focus:border-red-600"
+              : "border-slate-300 focus:border-primary-600"
           }`}
         />
-        {errors.password ? <p className="mt-1 text-sm text-red-600">{errors.password}</p> : null}
+        {errors.password ? (
+          <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+        ) : null}
       </div>
 
       <Button type="submit" isLoading={login.isPending} className="mt-2">

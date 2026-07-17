@@ -61,11 +61,7 @@ export function hasTripDeparted(trip: Pick<Trip, "departureAt">, now: Date): boo
   return trip.departureAt.getTime() <= now.getTime();
 }
 
-export function isWithinCancellationWindow(
-  departureAt: Date,
-  now: Date,
-): boolean {
-  const hoursUntilDeparture =
-    (departureAt.getTime() - now.getTime()) / (1000 * 60 * 60);
+export function isWithinCancellationWindow(departureAt: Date, now: Date): boolean {
+  const hoursUntilDeparture = (departureAt.getTime() - now.getTime()) / (1000 * 60 * 60);
   return hoursUntilDeparture < CANCELLATION_WINDOW_HOURS;
 }

@@ -38,7 +38,9 @@ describe("RegisterForm", () => {
 
     expect(await screen.findByText("Informe seu nome completo.")).toBeInTheDocument();
     expect(screen.getByText("CPF inválido.")).toBeInTheDocument();
-    expect(screen.getByText("Informe uma data de nascimento válida.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Informe uma data de nascimento válida."),
+    ).toBeInTheDocument();
     expect(screen.getByText("E-mail inválido.")).toBeInTheDocument();
     expect(api.register).not.toHaveBeenCalled();
   });

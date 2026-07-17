@@ -47,7 +47,9 @@ export function TripList({ trips, isLoading, hasSearched }: TripListProps) {
           </div>
           <div className="flex items-center gap-4">
             <div className="text-right">
-              <p className="font-semibold text-slate-900">{formatCurrency(trip.basePrice)}</p>
+              <p className="font-semibold text-slate-900">
+                {formatCurrency(trip.basePrice)}
+              </p>
               <p className="text-sm text-slate-500">
                 {trip.availableSeats > 0
                   ? `${trip.availableSeats} vagas restantes`

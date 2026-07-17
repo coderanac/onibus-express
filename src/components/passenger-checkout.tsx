@@ -23,7 +23,10 @@ export function PassengerCheckout({ tripId, seatNumber }: PassengerCheckoutProps
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
         <p className="text-red-600">Não foi possível carregar os dados da reserva.</p>
-        <Link href={`/viagens/${tripId}`} className="mt-4 inline-block text-primary-700 underline">
+        <Link
+          href={`/viagens/${tripId}`}
+          className="mt-4 inline-block text-primary-700 underline"
+        >
           Voltar para seleção de assento
         </Link>
       </div>

@@ -17,7 +17,9 @@ export function MyReservations() {
   if (!user) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-        <p className="text-sm text-slate-600">Entre com seu e-mail e senha para ver suas reservas.</p>
+        <p className="text-sm text-slate-600">
+          Entre com seu e-mail e senha para ver suas reservas.
+        </p>
         <Link
           href="/entrar?redirectTo=/minhas-reservas"
           className="mt-4 inline-block rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
@@ -63,7 +65,8 @@ export function MyReservations() {
               </span>
             </div>
             <p className="mt-1 text-sm text-slate-600">
-              {formatDateTime(reservation.trip.departureAt)} · Assento {reservation.seatNumber}
+              {formatDateTime(reservation.trip.departureAt)} · Assento{" "}
+              {reservation.seatNumber}
             </p>
             <p className="mt-2 text-sm font-medium text-slate-500">
               Código {reservation.code} · {formatCurrency(reservation.trip.basePrice)}

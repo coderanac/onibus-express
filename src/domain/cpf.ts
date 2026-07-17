@@ -28,10 +28,7 @@ export function isValidCpf(value: string): boolean {
   const firstCheckDigit = calculateCheckDigit(digits.slice(0, 9), 10);
   const secondCheckDigit = calculateCheckDigit(digits.slice(0, 10), 11);
 
-  return (
-    firstCheckDigit === Number(digits[9]) &&
-    secondCheckDigit === Number(digits[10])
-  );
+  return firstCheckDigit === Number(digits[9]) && secondCheckDigit === Number(digits[10]);
 }
 
 export function formatCpf(value: string): string {

@@ -1,6 +1,9 @@
 import { hashPassword } from "@/domain/password";
 import type { User } from "@/domain/entities";
-import type { UserCredentials, UserRepository } from "@/application/ports/user-repository";
+import type {
+  UserCredentials,
+  UserRepository,
+} from "@/application/ports/user-repository";
 import { loginWithEmail } from "./login-with-email";
 
 const EXISTING_USER: User = {

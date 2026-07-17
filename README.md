@@ -8,7 +8,7 @@
   Sistema de venda de passagens rodoviárias: busca de viagens, seleção de assento, reserva com dados do passageiro e consulta/cancelamento por código.
 </p>
 
-O desafio original pedia um backend separado do frontend, mas como a vaga é focada em frontend, resolvi entregar tudo em um único projeto Next.js. O React continua sendo o motor da interface e as *Route Handlers* do Next fazem o papel do backend, com a mesma separação em camadas (domínio, casos de uso, infraestrutura, API) que seria esperada em qualquer backend bem organizado. Isso deixou a entrega mais simples, com um único `npm install` e um único Docker, sem cortar nenhuma regra de negócio pedida.
+O desafio original pedia um backend separado do frontend, mas como a vaga é focada em frontend, resolvi entregar tudo em um único projeto Next.js. O React continua sendo o motor da interface e as _Route Handlers_ do Next fazem o papel do backend, com a mesma separação em camadas (domínio, casos de uso, infraestrutura, API) que seria esperada em qualquer backend bem organizado. Isso deixou a entrega mais simples, com um único `npm install` e um único Docker, sem cortar nenhuma regra de negócio pedida.
 
 ## 📸 Capturas de tela
 
@@ -25,16 +25,16 @@ O desafio original pedia um backend separado do frontend, mas como a vaga é foc
 
 ## 🧱 Tecnologias e por quê
 
-| Tecnologia | Onde | Por quê |
-| --- | --- | --- |
-| **Next.js 16 (App Router) + TypeScript** | Full stack | Um projeto só pra frontend e backend, com Server Components nas páginas e Route Handlers como API. Menos fricção do que manter dois repositórios e dois deploys pra um MVP. |
-| **React 19** | Frontend | Componentes funcionais, sem classes. |
-| **Prisma + SQLite** | Persistência | ORM tipado, migrations versionadas e banco em arquivo, sem precisar de infraestrutura extra pra rodar localmente ou em Docker. Pra trocar por Postgres basta mudar o `DATABASE_URL`. |
-| **@tanstack/react-query** | Frontend | Cache, estados de loading/erro, invalidação e optimistic update já resolvidos, sem precisar de um Redux ou Context manual pra dados assíncronos. |
-| **Zod** | Backend | Validação de entrada nas rotas de API, reaproveitando as mensagens de erro direto na resposta HTTP. |
-| **Tailwind CSS v4** | Frontend | Estilização utilitária rápida e responsiva. |
-| **Jest + Testing Library** | Testes | Testes de unidade e integração no backend, e testes de comportamento (não de implementação) nos componentes React. |
-| **Docker + docker-compose** | Deploy local | Sobe a aplicação inteira com um comando só, já aplicando as migrations. |
+| Tecnologia                               | Onde         | Por quê                                                                                                                                                                              |
+| ---------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Next.js 16 (App Router) + TypeScript** | Full stack   | Um projeto só pra frontend e backend, com Server Components nas páginas e Route Handlers como API. Menos fricção do que manter dois repositórios e dois deploys pra um MVP.          |
+| **React 19**                             | Frontend     | Componentes funcionais, sem classes.                                                                                                                                                 |
+| **Prisma + SQLite**                      | Persistência | ORM tipado, migrations versionadas e banco em arquivo, sem precisar de infraestrutura extra pra rodar localmente ou em Docker. Pra trocar por Postgres basta mudar o `DATABASE_URL`. |
+| **@tanstack/react-query**                | Frontend     | Cache, estados de loading/erro, invalidação e optimistic update já resolvidos, sem precisar de um Redux ou Context manual pra dados assíncronos.                                     |
+| **Zod**                                  | Backend      | Validação de entrada nas rotas de API, reaproveitando as mensagens de erro direto na resposta HTTP.                                                                                  |
+| **Tailwind CSS v4**                      | Frontend     | Estilização utilitária rápida e responsiva.                                                                                                                                          |
+| **Jest + Testing Library**               | Testes       | Testes de unidade e integração no backend, e testes de comportamento (não de implementação) nos componentes React.                                                                   |
+| **Docker + docker-compose**              | Deploy local | Sobe a aplicação inteira com um comando só, já aplicando as migrations.                                                                                                              |
 
 ## 🏗️ Decisões de arquitetura
 
@@ -71,8 +71,8 @@ npm run dev           # http://localhost:3000
 
 Só uma variável é necessária, já com um valor padrão em `.env` pra desenvolvimento local:
 
-| Variável | Descrição | Padrão (dev) |
-| --- | --- | --- |
+| Variável       | Descrição                                       | Padrão (dev)    |
+| -------------- | ----------------------------------------------- | --------------- |
 | `DATABASE_URL` | String de conexão do Prisma (SQLite em arquivo) | `file:./dev.db` |
 
 ## 📚 Documentação
@@ -88,6 +88,14 @@ npm test            # roda toda a suíte uma vez
 npm run test:watch  # modo watch
 ```
 
+Lint e formatação:
+
+```bash
+npm run lint          # ESLint (eslint-config-next)
+npm run format        # Prettier, formata o projeto inteiro
+npm run format:check  # só verifica, sem alterar arquivos
+```
+
 A suíte tem 76 testes e cobre:
 
 - **Domínio**: validação de CPF (formato e dígito verificador), máscara e conversão de datas, geração/formato do código de reserva e hash/verificação de senha.
@@ -99,19 +107,19 @@ A suíte tem 76 testes e cobre:
 
 Todas as rotas abaixo vivem em `/api` (ex.: `GET /api/rotas`). Especificação completa em [`public/openapi.json`](public/openapi.json), navegável em `/docs` com a aplicação rodando.
 
-| Método | Rota | Descrição |
-| --- | --- | --- |
-| `GET` | `/api/rotas` | Lista todas as rotas disponíveis |
-| `GET` | `/api/viagens?origem=&destino=&data=` | Busca viagens por origem, destino e data |
-| `GET` | `/api/viagens/{id}` | Detalhes de uma viagem, com assentos livres/ocupados |
-| `POST` | `/api/reservas` | Cria uma reserva (nome, CPF, e-mail, viagem, assento) |
-| `GET` | `/api/reservas/{codigo}` | Consulta uma reserva pelo código |
-| `DELETE` | `/api/reservas/{codigo}` | Cancela uma reserva (até 2h antes da partida) |
-| `POST` | `/api/auth/registrar` | Cria a conta (nome, CPF, data de nascimento, e-mail, senha) |
-| `POST` | `/api/auth/login` | Login por e-mail e senha |
-| `POST` | `/api/auth/logout` | Encerra a sessão |
-| `GET` | `/api/auth/me` | Retorna o usuário logado (ou `null`) |
-| `GET` | `/api/minhas-reservas` | Lista as reservas do usuário logado |
+| Método   | Rota                                  | Descrição                                                   |
+| -------- | ------------------------------------- | ----------------------------------------------------------- |
+| `GET`    | `/api/rotas`                          | Lista todas as rotas disponíveis                            |
+| `GET`    | `/api/viagens?origem=&destino=&data=` | Busca viagens por origem, destino e data                    |
+| `GET`    | `/api/viagens/{id}`                   | Detalhes de uma viagem, com assentos livres/ocupados        |
+| `POST`   | `/api/reservas`                       | Cria uma reserva (nome, CPF, e-mail, viagem, assento)       |
+| `GET`    | `/api/reservas/{codigo}`              | Consulta uma reserva pelo código                            |
+| `DELETE` | `/api/reservas/{codigo}`              | Cancela uma reserva (até 2h antes da partida)               |
+| `POST`   | `/api/auth/registrar`                 | Cria a conta (nome, CPF, data de nascimento, e-mail, senha) |
+| `POST`   | `/api/auth/login`                     | Login por e-mail e senha                                    |
+| `POST`   | `/api/auth/logout`                    | Encerra a sessão                                            |
+| `GET`    | `/api/auth/me`                        | Retorna o usuário logado (ou `null`)                        |
+| `GET`    | `/api/minhas-reservas`                | Lista as reservas do usuário logado                         |
 
 ## ✅ Requisitos do desafio atendidos
 

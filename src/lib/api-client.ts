@@ -41,8 +41,7 @@ export const api = {
   searchTrips: (filters: TripSearchFiltersInput) =>
     request<TripSearchResultDto[]>(`/api/viagens?${buildSearchParams(filters)}`),
 
-  getTripDetails: (tripId: string) =>
-    request<TripSeatMapDto>(`/api/viagens/${tripId}`),
+  getTripDetails: (tripId: string) => request<TripSeatMapDto>(`/api/viagens/${tripId}`),
 
   createReservation: (input: CreateReservationInput) =>
     request<ReservationDto>("/api/reservas", {

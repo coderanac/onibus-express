@@ -12,10 +12,7 @@ export const searchTripsQuerySchema = z.object({
 export const createReservationBodySchema = z.object({
   tripId: z.string().min(1, "Viagem é obrigatória."),
   seatNumber: z.coerce.number().int().positive("Assento inválido."),
-  passengerName: z
-    .string()
-    .trim()
-    .min(3, "Nome completo é obrigatório."),
+  passengerName: z.string().trim().min(3, "Nome completo é obrigatório."),
   passengerCpf: z.string().min(11, "CPF é obrigatório."),
   passengerEmail: z.string().trim().email("E-mail inválido."),
 });

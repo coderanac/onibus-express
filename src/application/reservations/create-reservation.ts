@@ -62,10 +62,7 @@ export async function createReservation(
     throw invalidSeatNumberError(request.seatNumber, trip.totalSeats);
   }
 
-  const seatTaken = await reservationRepository.isSeatTaken(
-    trip.id,
-    request.seatNumber,
-  );
+  const seatTaken = await reservationRepository.isSeatTaken(trip.id, request.seatNumber);
   if (seatTaken) {
     throw seatAlreadyTakenError(request.seatNumber);
   }

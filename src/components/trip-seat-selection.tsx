@@ -47,7 +47,9 @@ export function TripSeatSelection({ tripId }: { tripId: string }) {
       </div>
       <div className="mt-6 flex justify-end">
         <Button onClick={handleContinue} disabled={!selectedSeat}>
-          {selectedSeat ? `Continuar com o assento ${selectedSeat}` : "Selecione um assento"}
+          {selectedSeat
+            ? `Continuar com o assento ${selectedSeat}`
+            : "Selecione um assento"}
         </Button>
       </div>
     </div>
