@@ -61,6 +61,7 @@ Pra parar: `docker-compose down` (use `docker-compose down -v` se quiser apagar 
 Pré-requisitos: Node.js 20+ e npm.
 
 ```bash
+cp .env.example .env # variável do banco SQLite local, sem segredo nenhum
 npm install
 npm run db:migrate   # cria o banco SQLite e aplica as migrations
 npm run db:seed      # popula rotas e viagens de exemplo
@@ -69,7 +70,7 @@ npm run dev           # http://localhost:3000
 
 ### Variáveis de ambiente
 
-Só uma variável é necessária, já com um valor padrão em `.env` pra desenvolvimento local:
+Só uma variável é necessária, com um valor padrão em `.env.example` pra desenvolvimento local (copie pra `.env` como no passo acima):
 
 | Variável       | Descrição                                       | Padrão (dev)    |
 | -------------- | ----------------------------------------------- | --------------- |
